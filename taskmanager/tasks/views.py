@@ -22,7 +22,7 @@ class LoginView(APIView):
                 return Response({"error": "Invalid credentials"}, status=400)
 
             refresh = RefreshToken.for_user(user)
-            print(user.is_staff)            return Response({
+            return Response({
                 "refresh": str(refresh),
                 "access": str(refresh.access_token),
                 "is_staff": user.is_staff,  
