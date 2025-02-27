@@ -19,7 +19,7 @@ class LoginView(APIView):
         try:
             user = User.objects.get(username=username)
             if not user.check_password(password):
-                return Response({"error": "Invalid credentials"}, status=400)
+                return Response({"error": "Wrong Password or Email"}, status=400)
 
             refresh = RefreshToken.for_user(user)
             return Response({
@@ -29,7 +29,7 @@ class LoginView(APIView):
                 "is_superuser": user.is_superuser 
             })
         except User.DoesNotExist:
-            return Response({"error": "Invalid credentials"}, status=400)
+            return Response({"error": "Wrong Password or Email"}, status=400)
 
 class TaskListCreateView(generics.ListCreateAPIView):
     queryset = Task.objects.all()
@@ -57,6 +57,6 @@ class ProjectListCreateView(generics.ListCreateAPIView):
             return [permissions.IsAuthenticated(), IsSuperUser()]  
         return [permissions.IsAuthenticated()]  
 
-class ProjectDetailView(generics.RetrieveUpdateDestroyAPIView):  
+class ProjectDetailedViews(generics.RetrieveUpdateDestroyAPIView):  
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
