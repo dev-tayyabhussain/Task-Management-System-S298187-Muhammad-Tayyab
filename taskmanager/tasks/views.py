@@ -36,10 +36,6 @@ class TaskListCreateView(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    # def get_permissions(self):
-    #     if self.request.method == "POST":  # Creating a task
-    #         return [permissions.IsAuthenticated(), IsSuperUser()]  # Only superusers can create
-    #     return [permissions.IsAuthenticated()]  # Normal users can view
 
 class TaskRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Task.objects.all()
