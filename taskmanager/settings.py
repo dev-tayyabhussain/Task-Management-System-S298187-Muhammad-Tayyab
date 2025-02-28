@@ -1,7 +1,7 @@
 from pathlib import Path
 from datetime import timedelta
 import os
-import dj_database_url
+# import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -53,15 +53,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'taskmanager.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
-    'default': dj_database_url.config(default=f'sqlite:///{os.path.join(BASE_DIR, "db.sqlite3")}')
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+# DATABASES = {
+#     'default': dj_database_url.config(default=f'sqlite:///{os.path.join(BASE_DIR, "db.sqlite3")}')
+# }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -124,7 +124,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
     "https://127.0.0.1",
     "https://localhost",
-    "*"
+    "https://task-management-system-s298187-muhammad.onrender.com"
 ]
 CSRF_COOKIE_SECURE = False  
 CSRF_COOKIE_HTTPONLY = False  
